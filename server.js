@@ -35,9 +35,16 @@ app.post('/api/minutes', async (req, res) => {
   }
 });
 
-// Serve static frontend files
+// Server static files
 const path = require('path');
+
+// Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Optional: Redirect root to index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Start server
 const PORT = process.env.PORT || 3000;
