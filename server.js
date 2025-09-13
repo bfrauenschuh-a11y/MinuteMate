@@ -123,7 +123,11 @@ app.get('/api/minutes/:id/pdf', async (req, res) => {
     </html>
   `;
 
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteerconst browser = await puppeteer.launch({
+  headless: 'new',
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
+});
+  launch({ headless: 'new' });
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: 'networkidle0' });
   const pdf = await page.pdf({ format: 'A4', printBackground: true });
