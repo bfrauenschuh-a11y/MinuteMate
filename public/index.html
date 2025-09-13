@@ -1,0 +1,44 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MinuteMate</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📝 MinuteMate</h1>
+    <form id="meetingForm">
+      <input type="text" id="title" placeholder="Meeting Title" required />
+      <input type="date" id="date" required />
+      <textarea id="participants" placeholder="Participants (comma-separated)" required></textarea>
+      <textarea id="notes" placeholder="Meeting Notes" required></textarea>
+      <button type="submit">Save Minutes</button>
+    </form>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    document.getElementById('meetingForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        title: document.getElementById('title').value,
+        date: document.getElementById('date').value,
+        participants: document.getElementById('participants').value.split(','),
+        notes: document.getElementById('notes').value
+      };
+
+      const res = await fetch('/api/minutes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      document.getElementById('status').innerText = result.message;
+    });
+  </script>
+</body>
+</html>
