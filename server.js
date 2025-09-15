@@ -37,6 +37,14 @@ function addActionItem() {
         <option value="completed">Completed</option>
       </select>
     </label>
+    <label>Tag:
+      <select name="tag">
+        <option value="">-- Select Tag --</option>
+        <option value="strategic">Strategic</option>
+        <option value="operational">Operational</option>
+        <option value="compliance">Compliance</option>
+      </select>
+    </label>
   `;
-  document.querySelector('section').appendChild(container);
+  document.getElementById('actionItemsSection').appendChild(container);
 }
