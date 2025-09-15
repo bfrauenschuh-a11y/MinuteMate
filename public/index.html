@@ -18,24 +18,31 @@
       <label>Participants: <input type="text" name="participants" placeholder="Comma-separated" /></label>
 
       <section>
-          <h2>Action Items</h2>
+        <h2>Action Items</h2>
 
-  <div class="action-item">
-    <label>Task:
-      <input type="text" name="task" />
-    </label>
+        <div class="action-item">
+          <label>Task:
+          <input type="text" name="task" />
+        </label>
 
-    <label>Responsible:
-      <input type="text" name="responsible" />
-    </label>
+        <label>Responsible:
+         <input type="text" name="responsible" />
+        </label>
 
-    <label>Due Date:
-      <input type="date" name="dueDate" />
-    </label>
-  </div>
+        <label>Due Date:
+          <input type="date" name="dueDate" />
+        </label>
 
-  <!-- Add button to dynamically add more action items -->
-  <button type="button" onclick="addActionItem()">+ Add Another</button>
+        <label>Status:
+          <select name="status">
+          <option value="open">Open</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+          </select>
+        </label>
+        </div>
+
+        <button type="button" onclick="addActionItem()">+ Add Another</button>
       </section>
 
       <section>
