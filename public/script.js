@@ -2,14 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const actionList = document.getElementById('actionList');
   const addBtn = document.getElementById('addActionItemBtn');
 
-  // Add initial item
-  addActionItem();
+  addActionItem(); // Add initial item
 
-  // Add new item on button click
   addBtn.addEventListener('click', addActionItem);
-
-  // Load tracker view
-  document.querySelector('button[onclick="showTracker()"]')?.addEventListener('click', showTracker);
+  enableDragAndDrop();
 });
 
 // ➕ Create new action item block
@@ -94,7 +90,7 @@ async function showTracker() {
   });
 }
 
-// 📤 Save Action Items (optional trigger)
+// 💾 Save Action Items
 async function saveActionItems() {
   const items = [...document.querySelectorAll('#actionList .sortable-item')];
   const payload = items.map(item => ({
