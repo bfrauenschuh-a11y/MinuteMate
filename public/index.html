@@ -8,116 +8,36 @@
 </head>
 <body>
   <header>
-    <h1><img src="https://frauenschuh-projectconsulting.com/wp-content/uploads/2024/09/Original-on-transparent.svg" alt="Transparent svg" width="300" /> </h1>
+    <h1>📝 MinuteMate</h1>
     <label for="protocolSelect">Load Previous Protocol:</label>
     <select id="protocolSelect">
-    <option value="">-- Select a meeting --</option>
-    <option value="2025-10-10">2025-10-10 – Irina Iarotskaia, Bernhard Frauenschuh</option>
-    <option value="2025-09-13">2025-09-13 – Irina Iraotskaia, Bernhard Frauenschuh</option>
-  </select>
-</header>
+      <option value="">-- Select a meeting --</option>
+      <option value="2025-10-10">2025-10-10 – Irina & Bernhard</option>
+      <option value="2025-09-13">2025-09-13 – Irina & Bernhard</option>
+    </select>
   </header>
 
   <main>
-    <form id="minutesForm">
-      <label>Meeting Title: <input type="text" name="title" /></label>
-      <label>Date: <input type="date" name="date" /></label>
-      <label>Participants: <input type="text" name="participants" placeholder="Comma-separated" /></label>
+    <section id="actionItemsSection">
+      <h2>Action Items</h2>
+      <ul id="actionList" class="sortable-list"></ul>
+      <button type="button" id="addActionItemBtn">+ Add Another</button>
+    </section>
 
-      <section>
-        <h2>Action Items</h2>
-
-        <div class="action-item">
-          <label>Task:
-          <input type="text" name="task" />
-        </label>
-
-        <label>Responsible:
-         <input type="text" name="responsible" />
-        </label>
-
-        <label>Due Date:
-          <input type="date" name="dueDate" />
-        </label>
-
-        <label>Status:
-          <select name="status">
-          <option value="open">Open</option>
-          <option value="in-progress">In Progress</option>
-          <option value="completed">Completed</option>
-          </select>
-        </label>
-        <label>Tag:
-          <select name="tag">
-          <option value="">-- Select Tag --</option>
-          <option value="strategic">Strategic</option>
-          <option value="operational">Operational</option>
-          <option value="compliance">Compliance</option>
-          </select>
-        </label>
-        </div>
-
-        <button type="button" onclick="addActionItem()">+ Add Another</button>
-      </section>
-
-      <section>
-        <h2>Decisions</h2>
-        <textarea name="decisions" placeholder="One decision per line"></textarea>
-      </section>
-
-      <section>
-        <h2>Information Points</h2>
-        <textarea name="infoPoints" placeholder="One note per line"></textarea>
-      </section>
-
-      <button type="submit">Save Minutes</button>
-    </form>
+    <section id="actionTracker" style="display:none;">
+      <h2>📊 Action Item Tracker</h2>
+      <div class="tracker-columns">
+        <div class="tracker-column"><h3>Open</h3><ul id="openTasks"></ul></div>
+        <div class="tracker-column"><h3>In Progress</h3><ul id="inProgressTasks"></ul></div>
+        <div class="tracker-column"><h3>Completed</h3><ul id="completedTasks"></ul></div>
+      </div>
+    </section>
   </main>
 
-  <script>
-    document.getElementById('minutesForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        title: form.title.value,
-        date: form.date.value,
-        participants: form.participants.value,
-        actionItems: form.actionItems.value,
-        decisions: form.decisions.value,
-        infoPoints: form.infoPoints.value,
-      };
-      const res = await fetch('/api/minutes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      const result = await res.json();
-      alert(result.message);
-    });
-  </script>
-</body>
-<nav>
-  <button onclick="showTracker()">Action Tracker</button>
-</nav>
-<section id="actionTracker" style="display:none;">
-  <h2>📊 Action Item Tracker</h2>
+  <footer>
+    <p>© 2025 Fpc Solutions</p>
+  </footer>
 
-  <div class="tracker-columns">
-    <div class="tracker-column">
-      <h3>Open</h3>
-      <ul id="openTasks"></ul>
-    </div>
-    <div class="tracker-column">
-      <h3>In Progress</h3>
-      <ul id="inProgressTasks"></ul>
-    </div>
-    <div class="tracker-column">
-      <h3>Completed</h3>
-      <ul id="completedTasks"></ul>
-    </div>
-  </div>
-</section>
-<footer>
-  <p>© 2025 Fpc Solutions</p>
-</footer>
+  <script src="script.js"></script>
+</body>
 </html>
