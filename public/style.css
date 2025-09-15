@@ -83,3 +83,33 @@ header label, header select {
   margin: 0.5rem;
   font-size: 1rem;
 }
+
+.tracker-columns {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.tracker-column {
+  flex: 1;
+  background: #f4f4f4;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.tracker-column h3 {
+  margin-top: 0;
+}
+
+.tracker-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tracker-column li {
+  background: white;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-left: 4px solid #0077cc;
+}
+

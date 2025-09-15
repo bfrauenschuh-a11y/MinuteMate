@@ -48,3 +48,30 @@ function addActionItem() {
   `;
   document.getElementById('actionItemsSection').appendChild(container);
 }
+function showTracker() {
+  document.getElementById('actionTracker').style.display = 'block';
+
+  // Sample data – replace with real fetch from saved protocols
+  const tasks = [
+    { task: "Update checklist", responsible: "Bernhard", dueDate: "2025-09-20", status: "open", tag: "compliance", meetingDate: "2025-09-13" },
+    { task: "Review QMS", responsible: "Irina", dueDate: "2025-09-25", status: "in-progress", tag: "strategic", meetingDate: "2025-09-13" },
+    { task: "Finalize report", responsible: "Bernhard", dueDate: "2025-09-10", status: "completed", tag: "operational", meetingDate: "2025-09-10" },
+  ];
+
+  // Clear existing lists
+  ['openTasks', 'inProgressTasks', 'completedTasks'].forEach(id => {
+    document.getElementById(id).innerHTML = '';
+  });
+
+  // Populate columns
+  tasks.forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${item.task}</strong><br>
+      <small>${item.responsible} • Due: ${item.dueDate} • ${item.tag} • ${item.meetingDate}</small>`;
+    document.getElementById(
+      item.status === 'open' ? 'openTasks' :
+      item.status === 'in-progress' ? 'inProgressTasks' :
+      'completedTasks'
+    ).appendChild(li);
+  });
+}

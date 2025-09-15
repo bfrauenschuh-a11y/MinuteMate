@@ -96,6 +96,27 @@
     });
   </script>
 </body>
+<nav>
+  <button onclick="showTracker()">Action Tracker</button>
+</nav>
+<section id="actionTracker" style="display:none;">
+  <h2>📊 Action Item Tracker</h2>
+
+  <div class="tracker-columns">
+    <div class="tracker-column">
+      <h3>Open</h3>
+      <ul id="openTasks"></ul>
+    </div>
+    <div class="tracker-column">
+      <h3>In Progress</h3>
+      <ul id="inProgressTasks"></ul>
+    </div>
+    <div class="tracker-column">
+      <h3>Completed</h3>
+      <ul id="completedTasks"></ul>
+    </div>
+  </div>
+</section>
 <footer>
   <p>© 2025 Fpc Solutions</p>
 </footer>
