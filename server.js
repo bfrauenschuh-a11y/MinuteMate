@@ -22,3 +22,16 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+<script>
+  function addActionItem() {
+    const container = document.createElement('div');
+    container.className = 'action-item';
+    container.innerHTML = `
+      <label>Task: <input type="text" name="task" /></label>
+      <label>Responsible: <input type="text" name="responsible" /></label>
+      <label>Due Date: <input type="date" name="dueDate" /></label>
+    `;
+    document.querySelector('section').appendChild(container);
+  }
+</script>

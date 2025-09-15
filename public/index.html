@@ -8,9 +8,7 @@
 </head>
 <body>
   <header>
-    <h1><img src="https://frauenschuh-projectconsulting.com/wp-content/uploads/2024/09/Original-on-transparent.svg" alt="Transparent svg" width="300" />
- 
-      MinuteMate</h1>
+    <h1><img src="https://frauenschuh-projectconsulting.com/wp-content/uploads/2024/09/Original-on-transparent.svg" alt="Transparent svg" width="300" /> </h1>
   </header>
 
   <main>
@@ -20,8 +18,24 @@
       <label>Participants: <input type="text" name="participants" placeholder="Comma-separated" /></label>
 
       <section>
-        <h2>Action Items</h2>
-        <textarea name="actionItems" placeholder="Task | Responsible | Due Date"></textarea>
+          <h2>Action Items</h2>
+
+  <div class="action-item">
+    <label>Task:
+      <input type="text" name="task" />
+    </label>
+
+    <label>Responsible:
+      <input type="text" name="responsible" />
+    </label>
+
+    <label>Due Date:
+      <input type="date" name="dueDate" />
+    </label>
+  </div>
+
+  <!-- Add button to dynamically add more action items -->
+  <button type="button" onclick="addActionItem()">+ Add Another</button>
       </section>
 
       <section>
