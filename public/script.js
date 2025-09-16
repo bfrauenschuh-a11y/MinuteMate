@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const actionList = document.getElementById('actionList');
-  const addBtn = document.getElementById('addActionItemBtn');
-
+  document.getElementById('addActionItemBtn').addEventListener('click', addActionItem);
   addActionItem(); // Add initial item
-
-  addBtn.addEventListener('click', addActionItem);
   enableDragAndDrop();
 });
 
-// ➕ Create new action item block
+// ➕ Add Action Item block
 function addActionItem() {
   const li = document.createElement('li');
   li.className = 'sortable-item';
@@ -67,30 +63,7 @@ function getDragAfterElement(container, y) {
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
-// 📊 Load Action Tracker
-async function showTracker() {
-  document.getElementById('actionTracker').style.display = 'block';
-
-  const res = await fetch('/api/action-items');
-  const tasks = await res.json();
-
-  ['openTasks', 'inProgressTasks', 'completedTasks'].forEach(id => {
-    document.getElementById(id).innerHTML = '';
-  });
-
-  tasks.forEach(item => {
-    const li = document.createElement('li');
-    li.innerHTML = `<strong>${item.task}</strong><br>
-      <small>${item.responsible} • Due: ${item.dueDate} • ${item.tag} • ${item.meetingDate}</small>`;
-    document.getElementById(
-      item.status === 'open' ? 'openTasks' :
-      item.status === 'in-progress' ? 'inProgressTasks' :
-      'completedTasks'
-    ).appendChild(li);
-  });
-}
-
-// 💾 Save Action Items
+// 📤 Save Action Items to MongoDB
 async function saveActionItems() {
   const items = [...document.querySelectorAll('#actionList .sortable-item')];
   const payload = items.map(item => ({
@@ -112,5 +85,32 @@ async function saveActionItems() {
     alert('✅ Action items saved!');
   } else {
     alert('❌ Failed to save items.');
+  }
+}
+
+// 📊 Load Tracker View
+async function showSection(sectionId) {
+  document.getElementById('actionItemsSection').style.display = 'none';
+  document.getElementById('actionTracker').style.display = 'none';
+  document.getElementById(sectionId).style.display = 'block';
+
+  if (sectionId === 'actionTracker') {
+    const res = await fetch('/api/action-items');
+    const tasks = await res.json();
+
+    ['openTasks', 'inProgressTasks', 'completedTasks'].forEach(id => {
+      document.getElementById(id).innerHTML = '';
+    });
+
+    tasks.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${item.task}</strong><br>
+        <small>${item.responsible} • Due: ${item.dueDate} • ${item.tag} • ${item.meetingDate}</small>`;
+      document.getElementById(
+        item.status === 'open' ? 'openTasks' :
+        item.status === 'in-progress' ? 'inProgressTasks' :
+        'completedTasks'
+      ).appendChild(li);
+    });
   }
 }

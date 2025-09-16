@@ -1,61 +1,78 @@
+/* Base Reset & Font */
 body {
-  font-family: Arial, sans-serif;
-  margin: 2rem;
-  background: #f9f9f9;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
 }
 
-header, footer {
-  text-align: center;
+/* Container */
+.container {
+  max-width: 960px;
+  margin: 2rem auto;
   padding: 1rem;
-  background-color: #f9f9f9;
-  color: #555;
 }
 
-h1, h2 {
+/* Section Cards */
+.section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Headings */
+h2 {
+  font-size: 1.4rem;
   margin-bottom: 1rem;
+  color: #2c3e50;
 }
 
-label {
-  display: block;
-  margin: 0.5rem 0;
-}
-
-input, select {
-  padding: 0.5rem;
-  margin-right: 1rem;
-}
-
-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-}
-
-.sortable-list {
-  list-style: none;
-  padding: 0;
-}
-
-.sortable-item {
-  background: white;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
+/* Dropdowns & Inputs */
+select, input[type="text"], input[type="date"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
   border: 1px solid #ccc;
-  cursor: move;
-}
-
-.sortable-item.dragging {
-  opacity: 0.5;
-}
-
-.tracker-columns {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.tracker-column {
-  flex: 1;
-  background: #f4f4f4;
-  padding: 1rem;
   border-radius: 6px;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+/* Buttons */
+button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+/* Status Tags */
+.status {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.status.open { background-color: #e0f7fa; color: #00796b; }
+.status.in-progress { background-color: #fff3e0; color: #ef6c00; }
+.status.completed { background-color: #e8f5e9; color: #388e3c; }
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 2rem;
 }
