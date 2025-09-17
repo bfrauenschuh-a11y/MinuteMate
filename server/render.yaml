@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: MinuteMate
+    env: node
+    buildCommand: yarn
+    startCommand: node server/server.js
+    envVars:
+      - key: MONGO_URI
+        value: your-mongodb-uri
+      - key: PORT
+        value: 3001
