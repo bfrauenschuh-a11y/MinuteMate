@@ -1,47 +1,50 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinuteMate</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MinuteMate Pro</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <header>
-    <h1>📝 MinuteMate</h1>
-    <label for="protocolSelect">Load Previous Protocol:</label>
-    <select id="protocolSelect">
-      <option value="">-- Select a meeting --</option>
-      <option value="2025-10-10">2025-10-10 – Irina & Bernhard</option>
-      <option value="2025-09-13">2025-09-13 – Irina & Bernhard</option>
-    </select>
-    <nav>
-      <button onclick="showSection('actionItemsSection')">✍️ Edit Minutes</button>
-      <button onclick="showSection('actionTracker')">📊 Action Tracker</button>
-    </nav>
-  </header>
+  <div class="container">
+    <h1>📝 MinuteMate Pro</h1>
 
-  <main>
-    <section id="actionItemsSection">
-      <h2>Action Items</h2>
-      <ul id="actionList" class="sortable-list"></ul>
-      <button type="button" id="addActionItemBtn">+ Add Another</button>
-      <button type="button" onclick="saveActionItems()">💾 Save Items</button>
-    </section>
+    <form id="actionForm">
+      <input type="text" name="serial" placeholder="Laufende Nummer" required />
+      <input type="text" name="category" placeholder="Category (Tag)" />
+      <textarea name="description" placeholder="Task Description" required></textarea>
+      <textarea name="comments" placeholder="Comments (with date)" rows="2"></textarea>
 
-    <section id="actionTracker" style="display:none;">
+      <select name="status">
+        <option value="open">Open</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+
+      <input type="date" name="entryDate" placeholder="Date of Entry" />
+      <input type="text" name="responsible" placeholder="Responsible Person(s)" />
+      <input type="date" name="dueDate" placeholder="Due Date" />
+
+      <select name="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+        <option value="immediate">Immediate Action</option>
+      </select>
+
+      <input type="url" name="documentLink" placeholder="Document Link (SharePoint)" />
+      <input type="date" name="completionDate" placeholder="Date of Completion" />
+
+      <button type="submit">💾 Save Item</button>
+    </form>
+
+    <div id="tracker">
       <h2>📊 Action Item Tracker</h2>
-      <div class="tracker-columns">
-        <div class="tracker-column"><h3>Open</h3><ul id="openTasks"></ul></div>
-        <div class="tracker-column"><h3>In Progress</h3><ul id="inProgressTasks"></ul></div>
-        <div class="tracker-column"><h3>Completed</h3><ul id="completedTasks"></ul></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Fpc Solutions</p>
-  </footer>
+      <div id="items"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

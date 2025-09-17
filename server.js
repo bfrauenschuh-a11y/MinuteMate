@@ -10,36 +10,12 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
-const actionItemSchema = new mongoose.Schema({
-  task: String,
-  responsible: String,
-  dueDate: String,
-  status: String,
-  tag: String,
-  meetingDate: String
-});
-
-const ActionItem = mongoose.model('ActionItem', actionItemSchema);
-
-app.use(express.static(path.join(__dirname, 'public')));
+const app = express();
+app.use(cors());
 app.use(express.json());
 
-// Save action items
-app.post('/api/action-items', async (req, res) => {
-  try {
-    const items = await ActionItem.insertMany(req.body);
-    res.json(items);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Get all action items
-app.get('/api/action-items', async (req, res) => {
-  const items = await ActionItem.find();
-  res.json(items);
-});
+app.use('/api/action-items', actionItemsRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-
+app.listen(3001, () => console.log('Server running on port 3001'));
