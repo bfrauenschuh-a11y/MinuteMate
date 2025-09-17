@@ -1,0 +1,19 @@
+{
+  "name": "minutemate",
+  "version": "1.0.0",
+  "description": "Web-based minutes of meeting tool for project management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Bernhard @ Frauenschuh Project Consulting",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "mongoose": "^7.8.7",
+    "pdfkit": "^0.17.2",
+    "puppeteer": "^24.20.0"
+  }
+}
