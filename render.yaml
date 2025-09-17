@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: MinuteMate
+    env: node
+    buildCommand: yarn
+    startCommand: node server/server.js
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://bfrauenschuh_db_user:<db_password>@minutemate.pkk3g7t.mongodb.net/?retryWrites=true&w=majority&appName=MinuteMate
+      - key: PORT
+        value: 3001
